@@ -1,5 +1,12 @@
 package repository;
 
+/*
+        EmployeeRepositoryImpl.java
+        EmployeeRepositoryImpl class
+        Author: Robyn Dominique Stevens (222201789)
+        Date: 19 March 2026
+        */
+
 import domain.Employee;
 
 import java.util.HashMap;
@@ -9,7 +16,19 @@ import java.util.Set;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
-    private final Map<String, Employee> employeeMap = new HashMap<>();
+    private static EmployeeRepository repository = null;
+    private final Map<String, Employee> employeeMap;
+
+    private EmployeeRepositoryImpl() {
+        employeeMap = new HashMap<>();
+    }
+
+    public static EmployeeRepository getRepository() {
+        if (repository == null) {
+            repository = new EmployeeRepositoryImpl();
+        }
+        return repository;
+    }
 
     @Override
     public Employee create(Employee employee) {

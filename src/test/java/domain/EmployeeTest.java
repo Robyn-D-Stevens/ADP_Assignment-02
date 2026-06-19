@@ -4,6 +4,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/*  EmployeeTest.java
+*   EmployeeTest class
+*   Author: Robyn Dominique Stevens (222201789)
+*   Date: 19 March 2026
+* */
+
 class EmployeeTest {
 
     private Employee employee;

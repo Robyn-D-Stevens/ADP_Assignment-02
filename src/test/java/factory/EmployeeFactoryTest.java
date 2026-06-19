@@ -1,59 +1,53 @@
 package factory;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import domain.Employee;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/*
+  EmployeeFactoryTest.java
+  EmployeeFactoryTest class
+  Author: Robyn Dominique Stevens (222201789)
+  Date: 19 June 2026
+*/
 
 class EmployeeFactoryTest {
 
-    private EmployeeFactory factory;
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-        factory = null;
-    }
-
     @Test
     void createEmployee() {
+
+        Employee employee = EmployeeFactory.createEmployee(
+                "Thandiwe",
+                "Mokoena",
+                8500.00,
+                "ThandiweM@gmail.com",
+                "0721234567",
+                "IT Intern"
+        );
+
+        assertNotNull(employee);
+        assertNotNull(employee.getEmpID());
+        assertEquals("Thandiwe", employee.getFName());
+        assertEquals("Mokoena", employee.getLName());
+        assertEquals(8500.00, employee.getSalary());
+        assertEquals("ThandiweM@gmail.com", employee.getEmail());
+        assertEquals("0721234567", employee.getPhone());
+        assertEquals("IT Intern", employee.getRole());
+        assertEquals(Employee.EmpStatus.ACTIVE, employee.getEmpStatus());
     }
 
     @Test
-    void getEmpID() {
-    }
+    void createEmployee_generatesUniqueIds() {
 
-    @Test
-    void getFName() {
-    }
+        Employee first = EmployeeFactory.createEmployee(
+                "Sipho", "Nkosi", 8500.00, "SiphoN@gmail.com", "0739876543", "IT Intern"
+        );
 
-    @Test
-    void getLName() {
-    }
+        Employee second = EmployeeFactory.createEmployee(
+                "Annelie", "van der Merwe", 8500.00, "AnnelieVDM@gmail.com", "0845551234", "IT Intern"
+        );
 
-    @Test
-    void getSalary() {
-    }
-
-    @Test
-    void getEmail() {
-    }
-
-    @Test
-    void getPhone() {
-    }
-
-    @Test
-    void getRole() {
-    }
-
-    @Test
-    void getEmpStatus() {
-    }
-
-    @Test
-    void testUniqueIDs() {
+        assertNotEquals(first.getEmpID(), second.getEmpID());
     }
 }

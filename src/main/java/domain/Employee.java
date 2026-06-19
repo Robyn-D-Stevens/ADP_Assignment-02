@@ -1,5 +1,14 @@
 package domain;
 
+import java.util.Objects;
+
+/*
+  Employee.java
+  Employee POJO class
+  Author: Robyn Dominique Stevens (222201789)
+  Date: 19 June 2026
+*/
+
 public class Employee {
 
     private final String empID;
@@ -26,6 +35,42 @@ public class Employee {
         ACTIVE, SUSPENDED, TERMINATED
     }
 
+    public String getEmpID() { return empID; }
+    public String getFName() { return fName; }
+    public String getLName() { return lName; }
+    public double getSalary() { return salary; }
+    public String getEmail() { return email; }
+    public String getPhone() { return phone; }
+    public String getRole() { return role; }
+    public EmpStatus getEmpStatus() { return empStatus; }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "Employee ID='" + empID + '\'' +
+                ", First name='" + fName + '\'' +
+                ", Last name='" + lName + '\'' +
+                ", Salary=" + salary +
+                ", Email address='" + email + '\'' +
+                ", Phone number='" + phone + '\'' +
+                ", Role='" + role + '\'' +
+                ", Status=" + empStatus +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(empID, employee.empID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(empID);
+    }
+
     // Builder class
     public static class Builder {
         private String empID;
@@ -38,7 +83,7 @@ public class Employee {
         private EmpStatus empStatus;
 
         public Builder setEmpId(String empID) {
-            this.empID = this.empID;
+            this.empID = empID;
             return this;
         }
 
@@ -93,37 +138,5 @@ public class Employee {
         public Employee build() {
             return new Employee(this);
         }
-    }
-
-    public String getEmpID() {
-        return empID;
-    }
-
-    public String getFName() {
-        return fName;
-    }
-
-    public String getLName() {
-        return lName;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public EmpStatus getEmpStatus() {
-        return empStatus;
     }
 }

@@ -12,7 +12,7 @@ class EmployeeRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        repository = new EmployeeRepositoryImpl();
+        repository = EmployeeRepositoryImpl.getRepository();
         factory = new EmployeeFactory();
     }
 
